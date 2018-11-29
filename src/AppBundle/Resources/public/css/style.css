@@ -1,0 +1,68 @@
+.chatBlock {
+    width: 790px;
+    height: 200px;
+    border-style: double solid;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 25%;
+    background-color: whitesmoke;
+    float: left;
+    overflow: scroll;
+}
+
+#prototype {
+    width: 770px;
+    background-color: whitesmoke;
+    float: left;
+}
+
+.messageBlock {
+    width: 770px;
+    border-bottom-style: ridge;
+    margin-top: 1px;
+    background-color: whitesmoke;
+    float: left;
+}
+
+.textBlock {
+    width: 702px;
+    height: 29px;
+    border-style: double solid;
+    margin-bottom: 1%;
+    margin-left: 25%;
+    background-color: whitesmoke;
+    float: left;
+}
+
+.buttonBlock {
+    width: 63px;
+    height: 29px;
+    border-style: double solid;
+    margin-bottom: 1%;
+    margin-left: 20px;
+    background-color: whitesmoke;
+    float: left;
+}
+
+.userLabelField {
+    text-align: right;
+    margin-right: 1px;
+    margin-top: 7px;
+    display: inline-block;
+    width: 250px;
+    height: 25px;
+    float: left;
+}
+
+.userField {
+    margin-left: 5px;
+    height: 25px;
+    float: left;
+}
+
+.userSubmitButton {
+    text-align: center;
+    margin-top: 4px;
+    margin-left: 5px;
+    float: left;
+}

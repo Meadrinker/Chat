@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {#<form action="{{ path('user') }}" method="post">#}
+        {#<label for="username">Username:</label>#}
+        {#<input type="text" id="username" name="_username" />#}
+
+        {#<button type="submit">Enter the chat</button>#}
+    {#</form>#}
+
+    {{ form_start(form) }}
+
+    <div>
+        {{ form_label(form.user) }}
+        {{ form_widget(form.user) }}
+        {{ form_errors(form.user) }}
+    </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}

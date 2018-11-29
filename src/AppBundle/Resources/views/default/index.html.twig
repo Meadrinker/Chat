@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="chatBlock">
+
+    </div>
+
+    <div class="textBlock">
+        <input type="text" id="message" size="71">
+    </div>
+
+    <div class="buttonBlock">
+        <button type="button">Send</button>
+    </div>
+
+    <div id="prototype" style="display: none;">
+        <div class="messageBlock">
+             <div>Dawid</div>
+        </div>
+    </div>
+
+    <script>
+        var id = 0;
+        $(document).ready(function() {
+            $('div.buttonBlock button').click(function() {
+                sendMessage();
+            });
+            getMessage();
+        });
+
+        function sendMessage() {
+            var text_length = $('input#message').val().replace(/\s/g,'').length;
+            if (text_length > 0) {
+                var text = $('input#message').val();
+                $.ajax({
+                    url: "{{ path('chat_send') }}",
+                    cache: false,
+                    timeout:50000, /* Timeout in ms */
+                    type: "post", //typ połączenia
+                    dataType: 'json', //typ danych jakich oczekujemy w odpowiedzi
+                    data: { //dane do wysyłki
+                        'message': text
+                    }
+                })
+                .fail(function(response) {
+                    alert('Nie można wysłać pustej wiadomości!');
+                })
+                .always(function() {
+                    $('input#message').val("");
+                })
+            }
+        }
+
+        function getMessage() {
+            $.ajax({
+                url: "{{ path('chat_data') }}",
+                cache: false,
+                timeout:50000, /* Timeout in ms */
+                type: "post", //typ połączenia
+                dataType: 'json', //typ danych jakich oczekujemy w odpowiedzi
+                data: { "id": id }
+            })
+            .done(function(response) {
+                id = response.id;
+                $.each(response.messages, function(index, val) {
+                    var message = $('#prototype').html();
+                    message = $(message).text(
+                        response.messages[index].user
+                            + '('
+                            + response.messages[index].date
+                            + ')'
+                            + ': '
+                            + response.messages[index].message
+                    );
+                    $('div.chatBlock').append(message);
+                });
+                getMessage();
+            });
+        }
+    </script>
+
+{% endblock %}
