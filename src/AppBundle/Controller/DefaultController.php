@@ -12,14 +12,12 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request) {
-        $user = $request->cookies->get('user');
+    public function indexAction() {
+        $user = $this->get('session')->get('user');
         if ($user === null) {
             return $this->redirectToRoute('user');
         }
-        // replace this example code with whatever you need
         return $this->render('AppBundle:default:index.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ));
     }
 }

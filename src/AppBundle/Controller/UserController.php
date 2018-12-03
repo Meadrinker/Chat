@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: dawid
- * Date: 25.11.18
- * Time: 20:44
- */
 
 namespace AppBundle\Controller;
-
 
 use AppBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -24,15 +17,15 @@ class UserController extends Controller {
      */
     public function userAction(Request $request) {
 
+
         $form = $this->createForm(UserType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->get('user')->getData();
-            $cookie = new Cookie('user', $user);
+            $this->get('session')->set('user', $user);
             $response = new RedirectResponse('/');
-            $response->headers->setCookie($cookie);
-            $response->send();
+            return $response->send();
         }
 
         return $this->render('AppBundle:user:user.html.twig', array(

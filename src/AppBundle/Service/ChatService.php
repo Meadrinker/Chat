@@ -3,13 +3,15 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\Chat;
+use AppBundle\Service\Exception\UserNotFoundException;
+use AppBundle\Service\Exception\WrongMessageException;
 
 class ChatService {
 
     protected $entityManager;
     protected $validatorService;
 
-    public function __construct(\Doctrine\ORM\EntityManager $entityManager, ValidatorService $validatorService) {
+    public function __construct(\Doctrine\ORM\EntityManager $entityManager, MessageValidator $validatorService) {
         $this->entityManager = $entityManager;
         $this->validatorService = $validatorService;
     }
@@ -78,17 +80,18 @@ class ChatService {
     }
 
     public function addChatData($user, $message) {
-////        $status = $this->validatorService->messageValidation($message);
-//        if ($status === false) {
-//            return $status;
-//        }
-        $status = true;
+        if ($user === null) {
+            throw new UserNotFoundException('user not found', 1);
+        }
+        if (!$this->validatorService->validate($message)) {
+            throw new WrongMessageException($this->validatorService->errorMessage(), 2);
+        }
         $chat = new Chat();
         $chat->setUser($user);
         $chat->setText($message);
         $this->entityManager->persist($chat);
         $this->entityManager->flush();
-        return $status;
+        return true;
     }
 
 }

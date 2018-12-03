@@ -1,13 +1,21 @@
 .chatBlock {
     width: 790px;
     height: 200px;
-    border-style: double solid;
     margin-top: 1%;
     margin-bottom: 1%;
     margin-left: 25%;
-    background-color: whitesmoke;
     float: left;
     overflow: scroll;
+    display: block;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 #prototype {
@@ -18,29 +26,23 @@
 
 .messageBlock {
     width: 770px;
-    border-bottom-style: ridge;
     margin-top: 1px;
-    background-color: whitesmoke;
     float: left;
 }
 
 .textBlock {
     width: 702px;
     height: 29px;
-    border-style: double solid;
     margin-bottom: 1%;
     margin-left: 25%;
-    background-color: whitesmoke;
     float: left;
 }
 
 .buttonBlock {
     width: 63px;
     height: 29px;
-    border-style: double solid;
     margin-bottom: 1%;
     margin-left: 20px;
-    background-color: whitesmoke;
     float: left;
 }
 

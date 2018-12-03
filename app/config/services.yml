@@ -5,8 +5,8 @@ parameters:
 
 services:
     validator_service:
-        class: AppBundle\Service\ValidatorService
-        arguments: []
+        class: AppBundle\Service\MessageValidator
+        arguments: [@validator]
 
     chat_service:
         class: AppBundle\Service\ChatService

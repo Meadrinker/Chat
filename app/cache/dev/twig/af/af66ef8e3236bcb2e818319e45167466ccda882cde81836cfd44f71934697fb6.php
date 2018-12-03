@@ -42,16 +42,16 @@ class __TwigTemplate_a7174a9acdee91f48c03622558eb63eaef8b62d2ed9e1398fbc0eabbecd
     </div>
 
     <div class=\"textBlock\">
-        <input type=\"text\" id=\"message\" size=\"71\">
+        <input type=\"text\" id=\"message\" size=\"71\" class=\"form-control\">
     </div>
 
     <div class=\"buttonBlock\">
-        <button type=\"button\">Send</button>
+        <button type=\"button\" class=\"btn btn-outline-success\">Wyślij</button>
     </div>
 
     <div id=\"prototype\" style=\"display: none;\">
         <div class=\"messageBlock\">
-             <div>Dawid</div>
+             <div></div>
         </div>
     </div>
 
@@ -66,23 +66,34 @@ class __TwigTemplate_a7174a9acdee91f48c03622558eb63eaef8b62d2ed9e1398fbc0eabbecd
 
         function sendMessage() {
             var text_length = \$('input#message').val().replace(/\\s/g,'').length;
+            if (text_length == 0) {
+                alert('Nie można wysłać pustej wiadomości!');
+            }
             if (text_length > 0) {
                 var text = \$('input#message').val();
                 \$.ajax({
                     url: \"";
-        // line 36
+        // line 39
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("chat_send");
         echo "\",
                     cache: false,
-                    timeout:50000, /* Timeout in ms */
-                    type: \"post\", //typ połączenia
-                    dataType: 'json', //typ danych jakich oczekujemy w odpowiedzi
-                    data: { //dane do wysyłki
-                        'message': text
-                    }
+                    timeout:50000,
+                    type: \"post\",
+                    dataType: 'json',
+                    data: { 'message': text }
                 })
                 .fail(function(response) {
-                    alert('Nie można wysłać pustej wiadomości!');
+                    console.log(response.responseText);
+                    var jsonResponse = \$.parseJSON(response.responseText);
+                    if (jsonResponse.status == 1) {
+                        window.location.replace('";
+        // line 50
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("user");
+        echo "')
+                    } else {
+                        alert(jsonResponse.message);
+                    }
+
                 })
                 .always(function() {
                     \$('input#message').val(\"\");
@@ -93,13 +104,13 @@ class __TwigTemplate_a7174a9acdee91f48c03622558eb63eaef8b62d2ed9e1398fbc0eabbecd
         function getMessage() {
             \$.ajax({
                 url: \"";
-        // line 56
+        // line 64
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("chat_data");
         echo "\",
                 cache: false,
-                timeout:50000, /* Timeout in ms */
-                type: \"post\", //typ połączenia
-                dataType: 'json', //typ danych jakich oczekujemy w odpowiedzi
+                timeout:50000,
+                type: \"post\",
+                dataType: 'json',
                 data: { \"id\": id }
             })
             .done(function(response) {
@@ -139,7 +150,7 @@ class __TwigTemplate_a7174a9acdee91f48c03622558eb63eaef8b62d2ed9e1398fbc0eabbecd
 
     public function getDebugInfo()
     {
-        return array (  97 => 56,  74 => 36,  40 => 4,  34 => 3,  11 => 1,);
+        return array (  108 => 64,  91 => 50,  77 => 39,  40 => 4,  34 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -160,16 +171,16 @@ class __TwigTemplate_a7174a9acdee91f48c03622558eb63eaef8b62d2ed9e1398fbc0eabbecd
     </div>
 
     <div class=\"textBlock\">
-        <input type=\"text\" id=\"message\" size=\"71\">
+        <input type=\"text\" id=\"message\" size=\"71\" class=\"form-control\">
     </div>
 
     <div class=\"buttonBlock\">
-        <button type=\"button\">Send</button>
+        <button type=\"button\" class=\"btn btn-outline-success\">Wyślij</button>
     </div>
 
     <div id=\"prototype\" style=\"display: none;\">
         <div class=\"messageBlock\">
-             <div>Dawid</div>
+             <div></div>
         </div>
     </div>
 
@@ -184,20 +195,28 @@ class __TwigTemplate_a7174a9acdee91f48c03622558eb63eaef8b62d2ed9e1398fbc0eabbecd
 
         function sendMessage() {
             var text_length = \$('input#message').val().replace(/\\s/g,'').length;
+            if (text_length == 0) {
+                alert('Nie można wysłać pustej wiadomości!');
+            }
             if (text_length > 0) {
                 var text = \$('input#message').val();
                 \$.ajax({
                     url: \"{{ path('chat_send') }}\",
                     cache: false,
-                    timeout:50000, /* Timeout in ms */
-                    type: \"post\", //typ połączenia
-                    dataType: 'json', //typ danych jakich oczekujemy w odpowiedzi
-                    data: { //dane do wysyłki
-                        'message': text
-                    }
+                    timeout:50000,
+                    type: \"post\",
+                    dataType: 'json',
+                    data: { 'message': text }
                 })
                 .fail(function(response) {
-                    alert('Nie można wysłać pustej wiadomości!');
+                    console.log(response.responseText);
+                    var jsonResponse = \$.parseJSON(response.responseText);
+                    if (jsonResponse.status == 1) {
+                        window.location.replace('{{ path('user') }}')
+                    } else {
+                        alert(jsonResponse.message);
+                    }
+
                 })
                 .always(function() {
                     \$('input#message').val(\"\");
@@ -209,9 +228,9 @@ class __TwigTemplate_a7174a9acdee91f48c03622558eb63eaef8b62d2ed9e1398fbc0eabbecd
             \$.ajax({
                 url: \"{{ path('chat_data') }}\",
                 cache: false,
-                timeout:50000, /* Timeout in ms */
-                type: \"post\", //typ połączenia
-                dataType: 'json', //typ danych jakich oczekujemy w odpowiedzi
+                timeout:50000,
+                type: \"post\",
+                dataType: 'json',
                 data: { \"id\": id }
             })
             .done(function(response) {

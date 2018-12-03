@@ -10,6 +10,7 @@ class __TwigTemplate_82e334216b731cd397095ef859971def1443a8b7ee0099f81914fd441a7
         // line 1
         $this->parent = $this->loadTemplate("base.html.twig", "AppBundle:user:user.html.twig", 1);
         $this->blocks = array(
+            'stylesheets' => array($this, 'block_stylesheets'),
             'body' => array($this, 'block_body'),
         );
     }
@@ -31,49 +32,55 @@ class __TwigTemplate_82e334216b731cd397095ef859971def1443a8b7ee0099f81914fd441a7
     }
 
     // line 3
+    public function block_stylesheets($context, array $blocks = array())
+    {
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "stylesheets"));
+
+        // line 4
+        echo "    <link rel=\"stylesheet\" href=\"";
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("bundles/app/css/user.css"), "html", null, true);
+        echo "\">
+";
+        
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
+
+    }
+
+    // line 7
     public function block_body($context, array $blocks = array())
     {
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
-        // line 4
-        echo "
-    ";
-        // line 6
-        echo "        ";
-        // line 7
-        echo "        ";
         // line 8
         echo "
-        ";
-        // line 10
-        echo "    ";
+    <div class=\"text-center\" id=\"content\">
+        <div class=\"form-signin\">
+            ";
         // line 11
-        echo "
-    ";
-        // line 12
         echo         $this->env->getExtension('Symfony\Bridge\Twig\Extension\FormExtension')->renderer->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_start');
         echo "
 
-    <div>
-        ";
+            <div>
+                ";
+        // line 14
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\FormExtension')->renderer->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "user", array()), 'widget', array("attr" => array("placeholder" => "Nazwa użytkownika")));
+        echo "
+                ";
         // line 15
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\FormExtension')->renderer->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "user", array()), 'label');
-        echo "
-        ";
-        // line 16
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\FormExtension')->renderer->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "user", array()), 'widget');
-        echo "
-        ";
-        // line 17
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\FormExtension')->renderer->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "user", array()), 'errors');
         echo "
-    </div>
+            </div>
 
-    ";
-        // line 20
+            ";
+        // line 18
         echo         $this->env->getExtension('Symfony\Bridge\Twig\Extension\FormExtension')->renderer->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
         echo "
+        </div>
+    </div>
+
+
 
 ";
         
@@ -93,7 +100,7 @@ class __TwigTemplate_82e334216b731cd397095ef859971def1443a8b7ee0099f81914fd441a7
 
     public function getDebugInfo()
     {
-        return array (  75 => 20,  69 => 17,  65 => 16,  61 => 15,  55 => 12,  52 => 11,  50 => 10,  47 => 8,  45 => 7,  43 => 6,  40 => 4,  34 => 3,  11 => 1,);
+        return array (  78 => 18,  72 => 15,  68 => 14,  62 => 11,  57 => 8,  51 => 7,  41 => 4,  35 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -108,24 +115,26 @@ class __TwigTemplate_82e334216b731cd397095ef859971def1443a8b7ee0099f81914fd441a7
     {
         return new Twig_Source("{% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel=\"stylesheet\" href=\"{{ asset('bundles/app/css/user.css') }}\">
+{% endblock %}
+
 {% block body %}
 
-    {#<form action=\"{{ path('user') }}\" method=\"post\">#}
-        {#<label for=\"username\">Username:</label>#}
-        {#<input type=\"text\" id=\"username\" name=\"_username\" />#}
+    <div class=\"text-center\" id=\"content\">
+        <div class=\"form-signin\">
+            {{ form_start(form) }}
 
-        {#<button type=\"submit\">Enter the chat</button>#}
-    {#</form>#}
+            <div>
+                {{ form_widget(form.user, {'attr': {'placeholder': 'Nazwa użytkownika'} }) }}
+                {{ form_errors(form.user) }}
+            </div>
 
-    {{ form_start(form) }}
-
-    <div>
-        {{ form_label(form.user) }}
-        {{ form_widget(form.user) }}
-        {{ form_errors(form.user) }}
+            {{ form_end(form) }}
+        </div>
     </div>
 
-    {{ form_end(form) }}
+
 
 {% endblock %}", "AppBundle:user:user.html.twig", "/home/dawid/PhpstormProjects/Chat/src/AppBundle/Resources/views/user/user.html.twig");
     }

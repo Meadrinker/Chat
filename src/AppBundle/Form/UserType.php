@@ -15,25 +15,22 @@ class UserType extends AbstractType {
 
         $builder
             ->add('user', TextType::class, [
-                'label' => 'Username: ',
-                'label_attr' => ['class' => 'userLabelField'],
-                'attr' => ['class' => 'userField'],
+                'attr' => ['class' => 'form-control'],
                 'constraints' => array(
                     new NotBlank(),
                     new Length(array(
                         'min' => 3,
                         'max' => 20,
-                        'minMessage' => "Nazwa musi skladac sie z przynajmniej {{ limit }} znakow",
-                        'maxMessage' => "Maksymalna liczba znakow w nazwie to {{ limit }}"
+                        'minMessage' => "Nazwa musi składać się z przynajmniej {{ limit }} znaków.",
+                        'maxMessage' => "Maksymalna liczba znaków w nazwie to {{ limit }}."
                     )),
                 )
             ])
             ->add('save', SubmitType::class, array(
-            'label' => 'Enter the Chat',
-            'attr' => ['class' => 'userSubmitButton'],
+            'label' => 'Dołącz do chatu',
+            'attr' => ['class' => 'btn btn-lg btn-primary btn-block'],
         ))
             ->getForm();
-
     }
 
 }

@@ -1,22 +1,24 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/user.css') }}">
+{% endblock %}
+
 {% block body %}
 
-    {#<form action="{{ path('user') }}" method="post">#}
-        {#<label for="username">Username:</label>#}
-        {#<input type="text" id="username" name="_username" />#}
+    <div class="text-center" id="content">
+        <div class="form-signin">
+            {{ form_start(form) }}
 
-        {#<button type="submit">Enter the chat</button>#}
-    {#</form>#}
+            <div>
+                {{ form_widget(form.user, {'attr': {'placeholder': 'Nazwa użytkownika'} }) }}
+                {{ form_errors(form.user) }}
+            </div>
 
-    {{ form_start(form) }}
-
-    <div>
-        {{ form_label(form.user) }}
-        {{ form_widget(form.user) }}
-        {{ form_errors(form.user) }}
+            {{ form_end(form) }}
+        </div>
     </div>
 
-    {{ form_end(form) }}
+
 
 {% endblock %}
