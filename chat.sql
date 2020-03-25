@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Czas generowania: 03 Gru 2018, 19:34
--- Wersja serwera: 5.7.24-0ubuntu0.18.04.1
--- Wersja PHP: 7.2.10-0ubuntu0.18.04.1
+-- Czas generowania: 25 Mar 2020, 17:25
+-- Wersja serwera: 5.7.26-0ubuntu0.18.04.1
+-- Wersja PHP: 7.2.17-0ubuntu0.18.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -43,7 +43,10 @@ INSERT INTO `chat` (`id`, `user`, `text`, `date`) VALUES
 (67, 'Dawid', 'Witam', '2018-12-03 19:31:58'),
 (68, 'Patryk', 'Hej', '2018-12-03 19:32:02'),
 (69, 'Dawid', 'Co tam', '2018-12-03 19:32:12'),
-(70, 'Patryk', 'W porządku', '2018-12-03 19:32:18');
+(70, 'Patryk', 'W porządku', '2018-12-03 19:32:18'),
+(71, 'dasd', 'sasa', '2018-12-04 12:14:40'),
+(72, 'Dawid', 'cześć', '2019-03-03 14:50:27'),
+(73, 'fhfuyt', 'gfgdfd', '2019-03-04 16:27:18');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -63,7 +66,7 @@ ALTER TABLE `chat`
 -- AUTO_INCREMENT dla tabeli `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
